@@ -10,6 +10,7 @@ app.get("/", async (req, res, next) => {
   } catch (error) {
     //logs the error and responds/response http 500 code error
     console.error("Something went wrong", error);
+
     // wont catch asynchronous coding errors/bugs we need middleware for that
     res.status(500).send("Internal Server Error http:500");
     next(error);
@@ -18,6 +19,7 @@ app.get("/", async (req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
+
   res.status(500).send("Internal Server Error");
 });
 
